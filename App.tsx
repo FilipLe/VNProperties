@@ -2,12 +2,30 @@ import { NavigationContainer, NavigationProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, { Region, Marker } from 'react-native-maps';
 import React from 'react'; 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Settings from './src/pages/Settings';
+import { locations } from './src/locations';
 
 const Stack = createStackNavigator();
+
+const onRegionChange = (region: Region) => {
+  console.log(region);
+};
+
+const showLocationOfListing = () => {
+  return locations.map((item, index) => {
+    return (
+      <Marker
+        key={index}
+        coordinate={item.location}
+        title={item.title}
+        description={item.description}
+      />
+    )
+  });
+};
 
 function HomeScreen({ navigation }: { navigation: NavigationProp<any>}): JSX.Element {
   return (
@@ -25,7 +43,12 @@ function HomeScreen({ navigation }: { navigation: NavigationProp<any>}): JSX.Ele
 
       {/* Map */}
       <View style={styles.mapContainer}>
-        <MapView style = {{width:'100%', height:'100%'}}></MapView>
+        <MapView 
+          style = {{width:'100%', height:'100%'}}
+          onRegionChange = {onRegionChange}
+        >
+          {showLocationOfListing()}
+        </MapView>
       </View>
       <StatusBar style="auto" />
     </View>
