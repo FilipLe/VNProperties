@@ -1,14 +1,14 @@
-import { NavigationContainer, NavigationProp } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import MapView, { Region, Marker } from 'react-native-maps';
 import React from 'react'; 
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Settings from './src/pages/Settings';
+import ListView from './src/pages/ListView';
 import { locations } from './src/locations';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const onRegionChange = (region: Region) => {
   console.log(region);
@@ -27,14 +27,11 @@ const showLocationOfListing = () => {
   });
 };
 
-function HomeScreen({ navigation }: { navigation: NavigationProp<any>}): JSX.Element {
+function HomeScreen({ navigation }: { navigation: any}): JSX.Element {  
   return (
     <View style={styles.container}>
       {/* Search Bar */}
       <View style={styles.searchBarContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-          <MaterialIcons name="menu" size={30} color="#000" />
-        </TouchableOpacity>
         <TextInput
           style={styles.searchBar}
           placeholder="Wpisz lokalizację"
@@ -58,10 +55,11 @@ function HomeScreen({ navigation }: { navigation: NavigationProp<any>}): JSX.Ele
 export default function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Settings" component={Settings} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="List View" component={ListView} />
+        <Drawer.Screen name="Settings" component={Settings} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
