@@ -1,11 +1,4 @@
-export interface Location {
-  title: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  description: string;
-}
+import { Location } from "./components/Location";
 
 export const locations: Location[] = [
   {
@@ -15,6 +8,8 @@ export const locations: Location[] = [
       longitude: 19.99503,
     },
     description: "Description of location 1",
+    price: 150000,
+    rooms: 3,
   },
   {
     title: "Location 2",
@@ -23,5 +18,57 @@ export const locations: Location[] = [
       longitude: 21,
     },
     description: "Description of location 2",
+    price: 100000,
+    rooms: 4,
+  },
+  {
+    title: "Location 3",
+    location: {
+      latitude: 48.8566,
+      longitude: 2.3522,
+    },
+    description: "Description of location 3",
+    price: 120000,
+    rooms: 4,
+  },
+  {
+    title: "Location 4",
+    location: {
+      latitude: 40.7128,
+      longitude: -74.0060,
+    },
+    description: "Description of location 4",
+    price: 90000,
+    rooms: 2,
+  },
+  {
+    title: "Location 5",
+    location: {
+      latitude: 34.0522,
+      longitude: -118.2437,
+    },
+    description: "Description of location 5",
+    price: 114000,
+    rooms: 4,
+  },
+  {
+    title: "Location 6",
+    location: {
+      latitude: 35.6895,
+      longitude: 139.6917,
+    },
+    description: "Description of location 6",
+    price: 117600,
+    rooms: 4,
+  },
+  {
+    title: "Location 7",
+    location: {
+      latitude: -33.8688,
+      longitude: 151.2093,
+    },
+    description: "Description of location 7",
+    price: 220050,
+    rooms: 6,
   },
 ];

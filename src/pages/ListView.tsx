@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { locations, Location } from "../locations";
-import { Card } from 'react-native-elements';
+import { locations } from "../locations";
+import { Location } from "../components/Location";
 
 export default function ListView(): JSX.Element {
     return (
@@ -11,6 +11,8 @@ export default function ListView(): JSX.Element {
                     <Text style={styles.title}>{location.title}</Text>
                     <View style={styles.divider} />
                     <Text>{location.description}</Text>
+                    <Text>Price: ${location.price}</Text>
+                    <Text>Rooms: {location.rooms}</Text>
                     <Text>Latitude: {location.location.latitude}</Text>
                     <Text>Longitude: {location.location.longitude}</Text>
                 </View>
