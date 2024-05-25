@@ -1,12 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, TextInput, View } from 'react-native';
-import MapView, { Region, Marker } from 'react-native-maps';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import MapView, { Region, Marker, Callout } from 'react-native-maps';
 import React from 'react'; 
 import Settings from './src/pages/Settings';
 import ListView from './src/pages/ListView';
 import { locations } from './src/locations';
+import { Button } from 'react-native-elements';
+import CustomDrawerContent from './src/components/CustomDrawerComponent';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +24,13 @@ const showLocationOfListing = () => {
         coordinate={item.location}
         title={item.title}
         description={item.description}
-      />
+      >
+        <Callout style = {{padding: 6}}>
+          <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{item.title}</Text>
+          <Text style = {{marginBottom: 5}}>{item.description}</Text>
+          <Button title="Open in map" />
+        </Callout>
+      </Marker>
     )
   });
 };
@@ -55,7 +63,9 @@ function HomeScreen({ navigation }: { navigation: any}): JSX.Element {
 export default function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator 
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+        initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="List View" component={ListView} />
         <Drawer.Screen name="Settings" component={Settings} />

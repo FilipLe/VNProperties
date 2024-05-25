@@ -7,4 +7,6 @@ export interface Location {
     description: string;
     price: number;
     rooms: number;
+    imgURL: string;
 }
+

@@ -10,6 +10,7 @@ export const locations: Location[] = [
     description: "Description of location 1",
     price: 150000,
     rooms: 3,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 2",
@@ -20,6 +21,7 @@ export const locations: Location[] = [
     description: "Description of location 2",
     price: 100000,
     rooms: 4,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 3",
@@ -30,6 +32,7 @@ export const locations: Location[] = [
     description: "Description of location 3",
     price: 120000,
     rooms: 4,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 4",
@@ -40,6 +43,7 @@ export const locations: Location[] = [
     description: "Description of location 4",
     price: 90000,
     rooms: 2,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 5",
@@ -50,6 +54,7 @@ export const locations: Location[] = [
     description: "Description of location 5",
     price: 114000,
     rooms: 4,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 6",
@@ -60,6 +65,7 @@ export const locations: Location[] = [
     description: "Description of location 6",
     price: 117600,
     rooms: 4,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
   {
     title: "Location 7",
@@ -70,5 +76,6 @@ export const locations: Location[] = [
     description: "Description of location 7",
     price: 220050,
     rooms: 6,
+    imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
   },
 ];

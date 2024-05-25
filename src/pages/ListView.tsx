@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import { locations } from "../locations";
 import { Location } from "../components/Location";
 
@@ -10,6 +10,14 @@ export default function ListView(): JSX.Element {
                 <View key={index} style={styles.card}>
                     <Text style={styles.title}>{location.title}</Text>
                     <View style={styles.divider} />
+                    <Image 
+                    style={{
+                        width: '100%',
+                        height: 180,
+                        // resizeMode: 'contain'
+                    }}
+                    source={{ uri: location.imgURL }}
+                    />
                     <Text>{location.description}</Text>
                     <Text>Price: ${location.price}</Text>
                     <Text>Rooms: {location.rooms}</Text>
