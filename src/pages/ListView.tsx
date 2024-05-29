@@ -13,7 +13,14 @@ export default function ListView(): JSX.Element {
     return (
         <ScrollView>
             {locations.map((location: Location, index: number) => (
-                <Pressable key={index} style={styles.card} onPress={() => navigation.navigate('PropertyProfile', { location })}>
+                <Pressable 
+                    key={index} 
+                    style={styles.card} 
+                    onPress={() => {
+                        console.log(location);
+                        navigation.navigate('PropertyProfile', { location });
+                    }}
+                >
                     <Text style={styles.title}>{location.title}</Text>
                     <View style={styles.divider} />
                     <Image 

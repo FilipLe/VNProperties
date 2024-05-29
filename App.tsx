@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
@@ -10,6 +10,9 @@ import { locations } from './src/locations';
 import { Button } from 'react-native-elements';
 import CustomDrawerContent from './src/components/CustomDrawerComponent';
 import PropertyProfile from './src/pages/PropertyProfile';
+import { Location } from './src/components/Location';
+import { RootStackParamList } from './src/services/AppNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,33 +20,33 @@ const onRegionChange = (region: Region) => {
   console.log(region);
 };
 
-// TO DO
-// Update this handle so that it opens the property into detail view (property profile page)
-// Add a property profile page
-const handleViewProperty = (location : any) => {
-  console.log(location);
-};
+type AppNavigationProp = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
 
-const showLocationOfListing = () => {
-  return locations.map((item, index) => {
-    return (
-      <Marker
-        key={index}
-        coordinate={item.location}
-        title={item.title}
-        description={item.description}
-      >
-        <Callout style = {{padding: 6}}>
-          <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{item.title}</Text>
-          <Text style = {{marginBottom: 5}}>{item.description}</Text>
-          <Button title="View Location" onPress = {() => handleViewProperty(item.location)}/>
-        </Callout>
-      </Marker>
-    )
-  });
-};
+function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Element {  
+  const handleViewProperty = (item : Location) => {
+    navigation.navigate('PropertyProfile', { location: item })
+    console.log(item);
+  };
 
-function HomeScreen({ navigation }: { navigation: any}): JSX.Element {  
+  const showLocationOfListing = () => {
+    return locations.map((item, index) => {
+      return (
+        <Marker
+          key={index}
+          coordinate={item.location}
+          title={item.title}
+          description={item.description}
+        >
+          <Callout style = {{padding: 6}}>
+            <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{item.title}</Text>
+            <Text style = {{marginBottom: 5}}>{item.description}</Text>
+            <Button title="View Location" onPress = {() => handleViewProperty(item)}/>
+          </Callout>
+        </Marker>
+      )
+    });
+  };
+  
   return (
     <View style={styles.container}>
       {/* Search Bar */}
@@ -69,7 +72,6 @@ function HomeScreen({ navigation }: { navigation: any}): JSX.Element {
 }
 
 export default function App(): JSX.Element {
-  const [showPropertyProfile, setShowPropertyProfile] = useState(false);
   return (
     <NavigationContainer>
       <Drawer.Navigator 

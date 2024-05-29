@@ -2,15 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Location } from "../components/Location";
 
-interface RouteParams {
-    route: {
-        params: {
-            location: Location;
-        };
-    };
-}
-
-export default function PropertyProfile({ route }: RouteParams): JSX.Element {
+export default function PropertyProfile({ route }: { route: any}): JSX.Element {
     const { location } = route.params;
 
     return (

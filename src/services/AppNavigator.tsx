@@ -5,6 +5,7 @@ import PropertyProfile from '../pages/PropertyProfile';
 import { Location } from '../components/Location';
 
 export type RootStackParamList = {
+    HomeScreen: undefined;
     ListView: undefined;
     PropertyProfile: { location: Location };
 };
