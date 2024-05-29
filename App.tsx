@@ -3,17 +3,25 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import MapView, { Region, Marker, Callout } from 'react-native-maps';
-import React from 'react'; 
+import React, { useState } from 'react'; 
 import Settings from './src/pages/Settings';
 import ListView from './src/pages/ListView';
 import { locations } from './src/locations';
 import { Button } from 'react-native-elements';
 import CustomDrawerContent from './src/components/CustomDrawerComponent';
+import PropertyProfile from './src/pages/PropertyProfile';
 
 const Drawer = createDrawerNavigator();
 
 const onRegionChange = (region: Region) => {
   console.log(region);
+};
+
+// TO DO
+// Update this handle so that it opens the property into detail view (property profile page)
+// Add a property profile page
+const handleViewProperty = (location : any) => {
+  console.log(location);
 };
 
 const showLocationOfListing = () => {
@@ -28,7 +36,7 @@ const showLocationOfListing = () => {
         <Callout style = {{padding: 6}}>
           <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{item.title}</Text>
           <Text style = {{marginBottom: 5}}>{item.description}</Text>
-          <Button title="Open in map" />
+          <Button title="View Location" onPress = {() => handleViewProperty(item.location)}/>
         </Callout>
       </Marker>
     )
@@ -61,6 +69,7 @@ function HomeScreen({ navigation }: { navigation: any}): JSX.Element {
 }
 
 export default function App(): JSX.Element {
+  const [showPropertyProfile, setShowPropertyProfile] = useState(false);
   return (
     <NavigationContainer>
       <Drawer.Navigator 
@@ -68,6 +77,11 @@ export default function App(): JSX.Element {
         initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="List View" component={ListView} />
+        <Drawer.Screen name="PropertyProfile" component={PropertyProfile}
+          options={{
+            drawerItemStyle: { display: 'none' }
+          }}
+        />
         <Drawer.Screen name="Settings" component={Settings} />
       </Drawer.Navigator>
     </NavigationContainer>

@@ -1,13 +1,19 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
+import { View, Text, ScrollView, StyleSheet, Image, Pressable } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import { locations } from "../locations";
 import { Location } from "../components/Location";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from "../services/AppNavigator";
+
+type ListViewNavigationProp = StackNavigationProp<RootStackParamList, 'ListView'>;
 
 export default function ListView(): JSX.Element {
+    const navigation = useNavigation<ListViewNavigationProp>();
     return (
         <ScrollView>
             {locations.map((location: Location, index: number) => (
-                <View key={index} style={styles.card}>
+                <Pressable key={index} style={styles.card} onPress={() => navigation.navigate('PropertyProfile', { location })}>
                     <Text style={styles.title}>{location.title}</Text>
                     <View style={styles.divider} />
                     <Image 
@@ -23,7 +29,7 @@ export default function ListView(): JSX.Element {
                     <Text>Rooms: {location.rooms}</Text>
                     <Text>Latitude: {location.location.latitude}</Text>
                     <Text>Longitude: {location.location.longitude}</Text>
-                </View>
+                </Pressable>
             ))}
         </ScrollView>
     );
