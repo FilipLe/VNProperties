@@ -1,22 +1,27 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import { Location } from "../components/Location";
 
 export default function PropertyProfile({ route }: { route: any}): JSX.Element {
     const { location } = route.params;
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{location.title}</Text>
             <Image 
                 style={styles.image}
                 source={{ uri: location.imgURL }}
             />
-            <Text>{location.description}</Text>
-            <Text>Price: ${location.price}</Text>
-            <Text>Rooms: {location.rooms}</Text>
-            <Text>Latitude: {location.location.latitude}</Text>
-            <Text>Longitude: {location.location.longitude}</Text>
+            <Text style={styles.title}>{location.title}</Text>
+            <Text style={styles.header}>Description:</Text>
+            <Text style={styles.details}>{location.description}</Text>
+
+            <Text style={styles.header}>Details:</Text>
+            <Text style={styles.details}>Price: ${location.price}</Text>
+            <Text style={styles.details}>Rooms: {location.rooms}</Text>
+            <Text style={styles.details}>Latitude: {location.location.latitude}</Text>
+            <Text style={styles.details}>Longitude: {location.location.longitude}</Text>
+            
+            <Text style={styles.header}>Contact:</Text>
+            <Text style={styles.details}>Phone number: blah</Text>
         </View>
     );
 }
@@ -36,4 +41,14 @@ const styles = StyleSheet.create({
         height: 200,
         marginBottom: 10,
     },
+    header:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    details:{
+        fontSize: 15,
+        marginBottom: 10,
+    }
 });
+
