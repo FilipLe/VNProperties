@@ -27,7 +27,7 @@ export default function PropertyProfile({ route, navigation }: { route: any, nav
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <MapView
                             style={styles.map}
-                            initialRegion={{
+                            region={{
                                 latitude: location.location.latitude,
                                 longitude: location.location.longitude,
                                 latitudeDelta: 0.005,
