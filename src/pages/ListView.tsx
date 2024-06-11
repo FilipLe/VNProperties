@@ -31,7 +31,6 @@ export default function ListView(): JSX.Element {
                     }}
                     source={{ uri: location.imgURL }}
                     />
-                    <Text>{location.description}</Text>
                     <Text>Price: ${location.price}</Text>
                     <Text>Rooms: {location.rooms}</Text>
                     <Text>Latitude: {location.location.latitude}</Text>

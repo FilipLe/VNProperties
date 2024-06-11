@@ -1,7 +1,7 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 import MapView, { Region, Marker, Callout } from 'react-native-maps';
 import React, { useState } from 'react'; 
 import Settings from './src/pages/Settings';
@@ -37,9 +37,42 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
           title={item.title}
           description={item.description}
         >
-          <Callout style = {{padding: 6}}>
-            <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5}}>{item.title}</Text>
-            <Text style = {{marginBottom: 5}}>{item.description}</Text>
+          <Callout style = {{padding: 20}}>
+            <Text style = {{fontSize: 16, fontWeight: 'bold', marginBottom: 5, color: 'black'}}>{item.title}</Text>
+            <Image 
+                style = {{width: 160, height: 100, borderRadius: 6, marginBottom: 10}}
+                source={{ uri: item.imgURL }}
+            />
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+              <View style={{ backgroundColor: 'lightgrey', borderRadius: 20, padding: 5, marginRight: 10 }}>
+                <Text style={{ color: 'black' }}>${item.price}</Text>
+              </View>
+
+              <View style={{ backgroundColor: 'lightgrey', borderRadius: 20, padding: 5 }}>
+                <Text style={{ color: 'black' }}>{item.rooms} rooms</Text>
+              </View>
+            </View>
+
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+              <View style={{ backgroundColor: 'lightgrey', borderRadius: 20, padding: 5, marginRight: 10 }}>
+                <Text style={{ color: 'black' }}>{item.area} m
+                    <View style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 14 }}>2</Text>
+                    </View>
+                </Text>
+              </View>
+
+              <View style={{ backgroundColor: 'lightgrey', borderRadius: 20, padding: 5 }}>
+                <Text style={{ color: 'black' }}> 
+                  {item.pricePerArea} $/m
+                  <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 14 }}>2</Text>
+                  </View>
+                </Text>
+              </View>
+            </View>
+
             <Button title="View Location" onPress = {() => handleViewProperty(item)}/>
           </Callout>
         </Marker>
