@@ -13,6 +13,7 @@ import PropertyProfile from './src/pages/PropertyProfile';
 import { Location } from './src/components/Location';
 import { RootStackParamList } from './src/services/AppNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
+import FavoriteProperties from './src/pages/FavoriteProperties';
 
 const Drawer = createDrawerNavigator();
 
@@ -112,6 +113,7 @@ export default function App(): JSX.Element {
         initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="List View" component={ListView} />
+        <Drawer.Screen name="Favorite Properties" component={FavoriteProperties} />
         <Drawer.Screen name="PropertyProfile" component={PropertyProfile}
           options={{
             drawerItemStyle: { display: 'none' }
