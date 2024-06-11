@@ -7,7 +7,7 @@ const CustomDrawerContent = (props: any) => {
     <DrawerContentScrollView {...props}>
       <View style={styles.imageContainer}>
         <Image 
-          source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/unimate-f1630.appspot.com/o/DSC_3883.JPG?alt=media&token=ffebee26-4d2c-4986-85ec-396832b05347' }}
+          source={{ uri: 'https://www.shutterstock.com/image-vector/front-view-house-nature-elements-260nw-1938273742.jpg' }}
           style={styles.image}
         />
       </View>
