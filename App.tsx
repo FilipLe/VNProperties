@@ -107,7 +107,7 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
           value={searchQuery}
           onChangeText={handleSearch}
         />
-        {filteredLocations.length > 0 && (
+        {filteredLocations.length > 0 ? (
           <FlatList
             data={filteredLocations}
             keyExtractor={(item, index) => index.toString()}
@@ -124,6 +124,10 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
               </TouchableOpacity>
             )}
           />
+        ) : searchQuery.length > 0 && (
+          <Text style={{ padding: 10, backgroundColor: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
+            Property not found
+          </Text>
         )}
       </View>
 
@@ -175,16 +179,16 @@ const styles = StyleSheet.create({
   searchBarContainer: {
     flexDirection: 'column',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    width: '100%',
+    alignItems: 'flex-start',
     padding: 10,
+    width: '100%',
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
 
   searchBar: {
     height: 40,
-    width: '100%',
+    width: '96%',
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
