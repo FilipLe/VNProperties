@@ -6,6 +6,7 @@ import { Location } from "../components/Location";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from "../services/AppNavigator";
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useLocations } from "../contexts/LocationContext";
 
 type ListViewNavigationProp = StackNavigationProp<RootStackParamList, 'ListView'>;
 
@@ -13,14 +14,26 @@ export default function ListView(): JSX.Element {
     const navigation = useNavigation<ListViewNavigationProp>();
 
     const [starredItems, setStarredItems] = useState(new Set<number>());
+    const { locations, setLocations } = useLocations();
     const toggleStarred = (index: number) => {
-        const updatedStarredItems = new Set(starredItems);
+        const updatedLocations = [...locations]; 
+        const updatedStarredItems = new Set(starredItems); 
+    
         if (starredItems.has(index)) {
-            updatedStarredItems.delete(index);
+            // Already starred
+            updatedStarredItems.delete(index); 
+            updatedLocations[index].favorite = false; 
         } else {
-            updatedStarredItems.add(index);
+            // Not starred yet
+            updatedStarredItems.add(index); 
+            updatedLocations[index].favorite = true; 
         }
-        setStarredItems(updatedStarredItems);
+    
+        // Log the new favorite status
+        console.log(updatedLocations[index].favorite); 
+    
+        setStarredItems(updatedStarredItems); 
+        setLocations(updatedLocations); 
     };
     
     return (

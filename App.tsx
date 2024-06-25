@@ -14,6 +14,7 @@ import { Location } from './src/components/Location';
 import { RootStackParamList } from './src/services/AppNavigator';
 import { StackNavigationProp } from '@react-navigation/stack';
 import FavoriteProperties from './src/pages/FavoriteProperties';
+import { LocationProvider } from './src/contexts/LocationContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -107,21 +108,23 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
 
 export default function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator 
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="List View" component={ListView} />
-        <Drawer.Screen name="Favorite Properties" component={FavoriteProperties} />
-        <Drawer.Screen name="PropertyProfile" component={PropertyProfile}
-          options={{
-            drawerItemStyle: { display: 'none' }
-          }}
-        />
-        <Drawer.Screen name="Settings" component={Settings} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <LocationProvider>
+      <NavigationContainer>
+        <Drawer.Navigator 
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          initialRouteName="Home">
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="List View" component={ListView} />
+          <Drawer.Screen name="Favorite Properties" component={FavoriteProperties} />
+          <Drawer.Screen name="PropertyProfile" component={PropertyProfile}
+            options={{
+              drawerItemStyle: { display: 'none' }
+            }}
+          />
+          <Drawer.Screen name="Settings" component={Settings} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </LocationProvider>
   );
 }
 
