@@ -1,16 +1,43 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text } from 'react-native';
+import { StyleSheet, ScrollView, Text, Pressable, View, Image } from 'react-native';
 import { useLocations } from '../contexts/LocationContext';
 import { Location } from '../components/Location';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../services/AppNavigator';
+import { StackNavigationProp } from '@react-navigation/stack';
 
+type FavoritePropertiesNavigationProp = StackNavigationProp<RootStackParamList, 'FavoriteProperties'>;
 const FavoriteProperties = () => {
+  const navigation = useNavigation<FavoritePropertiesNavigationProp>();
+
   const { locations } = useLocations();
   const starredLocations = locations.filter(location => location.favorite);
 
   return (
     <ScrollView>
       {starredLocations.map((location: Location, index: number) => (
-        <Text key={index}>{location.title}</Text>
+        <Pressable
+            key = {index}
+            style = {styles.card}
+            onPress = {() => {
+                navigation.navigate('PropertyProfile', {location});
+            }}
+        >
+            <Text style={styles.title}>{location.title}</Text>
+            <View style={styles.divider} />
+            <Image 
+            style={{
+                width: '100%',
+                height: 180,
+                // resizeMode: 'contain'
+            }}
+            source={{ uri: location.imgURL }}
+            />
+            <Text>Price: ${location.price}</Text>
+            <Text>Rooms: {location.rooms}</Text>
+            <Text>Latitude: {location.location.latitude}</Text>
+            <Text>Longitude: {location.location.longitude}</Text>
+        </Pressable>
       ))}
     </ScrollView>
   );
