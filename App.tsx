@@ -1,7 +1,7 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, View, FlatList, TouchableOpacity, Pressable } from 'react-native';
 import MapView, { Region, Marker, Callout } from 'react-native-maps';
 import React, { useState } from 'react'; 
 import Settings from './src/pages/Settings';
@@ -81,6 +81,21 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
       )
     });
   };
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredLocations, setFilteredLocations] = useState<Location[]>([]);
+
+  const handleSearch = (text: string) => {
+    setSearchQuery(text);
+    if (text.length > 0) {
+      const filteredData = locations.filter(location =>
+        location.title.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredLocations(filteredData);
+    } else {
+      setFilteredLocations([]);
+    }
+  };
   
   return (
     <View style={styles.container}>
@@ -89,7 +104,27 @@ function HomeScreen({ navigation }: { navigation: AppNavigationProp}): JSX.Eleme
         <TextInput
           style={styles.searchBar}
           placeholder="Wpisz lokalizację"
+          value={searchQuery}
+          onChangeText={handleSearch}
         />
+        {filteredLocations.length > 0 && (
+          <FlatList
+            data={filteredLocations}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={{ padding: 10, backgroundColor: '#fff' }}
+                onPress={() => {
+                  setSearchQuery('');
+                  setFilteredLocations([]);
+                  handleViewProperty(item);
+                }}
+              >
+                <Text>{item.title}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        )}
       </View>
 
       {/* Map */}
@@ -138,7 +173,7 @@ const styles = StyleSheet.create({
   },
 
   searchBarContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     backgroundColor: '#fff',
     alignItems: 'center',
     width: '100%',
@@ -149,7 +184,7 @@ const styles = StyleSheet.create({
 
   searchBar: {
     height: 40,
-    flex: 1,
+    width: '100%',
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
