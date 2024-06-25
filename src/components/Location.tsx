@@ -11,5 +11,6 @@ export interface Location {
     pricePerArea: number;
     imgURL: string;
     phoneNumber: number;
+    favorite: boolean;
 }
 

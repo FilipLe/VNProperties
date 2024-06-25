@@ -14,6 +14,7 @@ export const locations: Location[] = [
     pricePerArea: 150000 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 2",
@@ -28,6 +29,7 @@ export const locations: Location[] = [
     pricePerArea: 100000 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 3",
@@ -42,6 +44,7 @@ export const locations: Location[] = [
     pricePerArea: 120000 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 4",
@@ -56,6 +59,7 @@ export const locations: Location[] = [
     pricePerArea: 90000 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 5",
@@ -70,6 +74,7 @@ export const locations: Location[] = [
     pricePerArea: 114000 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 6",
@@ -84,6 +89,7 @@ export const locations: Location[] = [
     pricePerArea: 117600 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
   {
     title: "Location 7",
@@ -98,5 +104,6 @@ export const locations: Location[] = [
     pricePerArea: 220050 / 100,
     imgURL: "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg",
     phoneNumber: 1234567890,
+    favorite: false,
   },
 ];
